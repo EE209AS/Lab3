@@ -26,8 +26,12 @@ class PostHandler(BaseHTTPRequestHandler):
             sp.Popen(['./'+filename])
 
         elif form['Action'].value == 'Stop':
-            p = sp.Popen(['ps','|', 'grep', filename, '|', 'grep', '-o', '^[^ ]*'])
-            (pid,err) = p.communicate()
+	    filename2 = form["Song"].value + '\.out'
+	    print 'filename: ', filename2
+            p1 = sp.Popen(['ps'], stdout=sp.PIPE)
+	    p2 = sp.Popen(['grep', filename2],stdin=p1.stdout, stdout=sp.PIPE)
+      	    output = p2.communicate()[0]
+	    pid = output.split()[0]
             print 'killing process', pid
             sp.call(['kill', pid])
         elif form['Action'].value == 'Tempo':
@@ -37,7 +41,7 @@ class PostHandler(BaseHTTPRequestHandler):
         return           
                                                                                                          
 from BaseHTTPServer import HTTPServer                                 
-server = HTTPServer(('localhost', 8000), PostHandler)                   
+server = HTTPServer(('0.0.0.0', 8000), PostHandler)                   
 print 'Starting server on 8000, use <Ctrl-C> to stop'                 
 
 server.serve_forever()  
