@@ -1,4 +1,5 @@
 from BaseHTTPServer import BaseHTTPRequestHandler
+import subprocess as sp
 import cgi
 
 class PostHandler(BaseHTTPRequestHandler):
@@ -20,13 +21,22 @@ class PostHandler(BaseHTTPRequestHandler):
         self.wfile.write('Path: %s\n' % self.path)
         self.wfile.write('Form data:\n')
 
+        filename = form["Song"].value + '.out'    
+        if form['Action'].value == 'Start':       
+            sp.Popen(['./'+filename])
 
-        for field in form.keys():                                  
-            field_item = form[field]                                                
-            self.wfile.write('\t%s=%s\n' % (field, form[field].value))
+        elif form['Action'].value == 'Stop':
+            p = sp.Popen(['ps','|', 'grep', filename, '|', 'grep', '-o', '^[^ ]*'])
+            (pid,err) = p.communicate()
+            print 'killing process', pid
+            sp.call(['kill', pid])
+        elif form['Action'].value == 'Tempo':
+            sp.call(['gcc', filename + "_" + "tempo.c"])
         return           
                                                                                                          
 from BaseHTTPServer import HTTPServer                                 
 server = HTTPServer(('localhost', 8000), PostHandler)                   
 print 'Starting server on 8000, use <Ctrl-C> to stop'                 
+
 server.serve_forever()  
+
