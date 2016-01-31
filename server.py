@@ -32,6 +32,8 @@ class PostHandler(BaseHTTPRequestHandler):
             sp.call(['kill', pid])
         elif form['Action'].value == 'Tempo':
             sp.call(['gcc', filename + "_" + "tempo.c"])
+        else:
+            print 'wrong Action'
         return           
                                                                                                          
 from BaseHTTPServer import HTTPServer                                 
