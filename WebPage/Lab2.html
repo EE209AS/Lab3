@@ -12,7 +12,18 @@
 		<link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="aero.css">
 		<link rel="icon" href="MegaMinimal.png">
-
+		<script>
+		function unCheck(browser) {
+				if(browser==="Song1")
+				{
+					document.getElementById('song2').checked=false;
+				}
+				else if(browser==="Song2")
+				{
+					document.getElementById('song1').checked=false;
+				}
+			}
+		</script>
 	</head>
 
 	<body>
@@ -37,8 +48,6 @@
 						</svg>
 					</a>
 				</section>
-
-
 			</nav>
 
 
@@ -48,18 +57,21 @@
         <p>Music controller based on the Intel Edison</p>
 				<p>
 					<ul>
-            <h5 class="title">Select a Song</h5>
-            <ol>
+            <h5 class="title">Select a Key to Play</h5>
 
-              <p>TODO: Main control</p>
-
-            </ol>
-
-            <input class="button" type="submit" value="Play"></input>
-            <input class="button button-outline" type="submit" value="Stop"></input>
+						<form action="http://127.0.0.1:8000" method="post">
+							<li>
+								<input type="radio" name="Song" id="song1" onclick="unCheck(this.value)" value="Song1">   Song 1
+							</li>
+							<li>
+								<input type="radio" name="Song" id="song2" onclick="unCheck(this.value)" value="Song2">   Song 2
+							</li>
+	            <input class="button" type="submit" name="Action" value="Start"></input>
+	            <input class="button button-outline" type="submit" name="Action" value="Tempo"></input>
+							<input class="button button-clear" type="submit" name="Action" value="Stop"></input>
+						</form>
 					</ul>
 				</p>
-
       </section>
 
 
