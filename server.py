@@ -17,12 +17,13 @@ class PostHandler(BaseHTTPRequestHandler):
         self.send_response(200)
         self.end_headers()
         self.wfile.write('Client: %s\n' % str(self.client_address))
-        self.wfile.write('User-agent: %s\n' % str(self.headers['user-agent']))  
+        self.wfile.write('User-agent: %s\n' % str(self.headers['user-agent']))
         self.wfile.write('Path: %s\n' % self.path)
         self.wfile.write('Form data:\n')
+        
 
-        filename = form["Song"].value + '.out'    
-        if form['Action'].value == 'Start':       
+        filename = form["Song"].value + '.out'
+        if form['Action'].value == 'Start':
             sp.Popen(['./'+filename])
 
         elif form['Action'].value == 'Stop':
@@ -38,11 +39,11 @@ class PostHandler(BaseHTTPRequestHandler):
             sp.call(['gcc', filename + "_" + "tempo.c"])
         else:
             print 'wrong Action'
-        return           
-                                                                                                         
-from BaseHTTPServer import HTTPServer                                 
-server = HTTPServer(('0.0.0.0', 8000), PostHandler)                   
-print 'Starting server on 8000, use <Ctrl-C> to stop'                 
+        return
 
-server.serve_forever()  
+from BaseHTTPServer import HTTPServer
+server = HTTPServer(('0.0.0.0', 8000), PostHandler)
+print 'Starting server on 8000, use <Ctrl-C> to stop'
 
+
+server.serve_forever()
