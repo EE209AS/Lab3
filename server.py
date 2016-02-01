@@ -21,29 +21,29 @@ class PostHandler(BaseHTTPRequestHandler):
         self.wfile.write('Path: %s\n' % self.path)
         self.wfile.write('Form data:\n')
         
-        for field in form.keys():
-            field_item = form[field]
-            print field_item
-            self.wfile.write('\t%s=%s\n' % (field, form[field].value))
 
         filename = form["Song"].value + '.out'
         if form['Action'].value == 'Start':
             sp.Popen(['./'+filename])
 
         elif form['Action'].value == 'Stop':
-            p = sp.Popen(['ps','|', 'grep', filename, '|', 'grep', '-o', '^[^ ]*'])
-            (pid,err) = p.communicate()
+	    filename2 = form["Song"].value + '\.out'
+	    print 'filename: ', filename2
+            p1 = sp.Popen(['ps'], stdout=sp.PIPE)
+	    p2 = sp.Popen(['grep', filename2],stdin=p1.stdout, stdout=sp.PIPE)
+      	    output = p2.communicate()[0]
+	    pid = output.split()[0]
             print 'killing process', pid
             sp.call(['kill', pid])
         elif form['Action'].value == 'Tempo':
             sp.call(['gcc', filename + "_" + "tempo.c"])
         else:
             print 'wrong Action'
-
         return
 
 from BaseHTTPServer import HTTPServer
-server = HTTPServer(('localhost', 8000), PostHandler)
+server = HTTPServer(('0.0.0.0', 8000), PostHandler)
 print 'Starting server on 8000, use <Ctrl-C> to stop'
+
 
 server.serve_forever()
