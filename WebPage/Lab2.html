@@ -10,8 +10,25 @@
 		<link rel="stylesheet" href="normalize.css">
 		<link rel="stylesheet" href="milligram.min.css">
 		<link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="aero.css">
 		<link rel="icon" href="MegaMinimal.png">
+		<script>window.jQuery || document.write('<script src="jquery.js">\x3C/script>');</script>
+		<link href="./skins/all.css?v=1.0.2" rel="stylesheet">
+		<script src="./js/jquery.js"></script>
+		<script src="./icheck.js?v=1.0.2"></script>
+		<script src="./js/custom.min.js?v=1.0.2"></script>
+
+		<script>
+			$(document).ready(function(){
+			  $('input').iCheck({
+					checkboxClass: 'icheckbox_square-blue',
+			    radioClass: 'iradio_square-blue',
+			    increaseArea: '20%' // optional
+			  });
+			});
+		</script>
+
+
+
 		<script>
 		function unCheck(browser) {
 				if(browser==="Song1")
@@ -24,6 +41,42 @@
 				}
 			}
 		</script>
+
+
+		<script>
+		function btnClick(browser) {
+
+					var song;
+					if(document.getElementById('song1').checked===true)
+					{
+							song="Song1";
+					}
+					else if(document.getElementById('song2').checked===true)
+					{
+							song="Song2";
+					}
+
+
+					$.post(
+							"http://127.0.0.1:8000",
+							{ Action: browser, Song: song },
+							function(data) {
+									alert("Response: " + data);
+								}
+							);
+					$.post(
+							"http://127.0.0.1:8080",
+							{ Action: browser, Song: song },
+							function(data) {
+									alert("Response: " + data);
+								}
+							);
+
+			}
+		</script>
+
+
+
 	</head>
 
 	<body>
@@ -57,21 +110,23 @@
         <p>Music controller based on the Intel Edison</p>
 				<p>
 					<ul>
-            <h5 class="title">Select a Key to Play</h5>
+            <h5 class="title">Select a Song to Play</h5>
 
 
-						<form action="http://127.0.0.1:8000" method="post">
+
+						<ol>
+
 							<li>
-								<input type="radio" name="Song" id="song1" onclick="unCheck(this.value)" value="Song1">   Song 1
+								<input type="radio" name="Song" id="song1" onclick="unCheck(this.value)" value="Song1"> &nbsp Song 1
 							</li>
 							<li>
-								<input type="radio" name="Song" id="song2" onclick="unCheck(this.value)" value="Song2">   Song 2
+								<input type="radio" name="Song" id="song2" onclick="unCheck(this.value)" value="Song2"> &nbsp Song 2
 							</li>
 							<p></p>
-	            <input class="button" type="submit" name="Action" value="Start"></input>
-	            <input class="button button-outline" type="submit" name="Action" value="Tempo"></input>
-							<input class="button button-clear" type="submit" name="Action" value="Stop"></input>
-						</form>
+	            <input class="button" type="submit" name="Action" value="Start" onclick="btnClick(this.value)"></input>
+	            <input class="button button-outline" type="submit" name="Action" value="Tempo" onclick="btnClick(this.value)"></input>
+							<input class="button button-clear" type="submit" name="Action" value="Stop" onclick="btnClick(this.value)"></input>
+						</ol>
 
 
 					</ul>
