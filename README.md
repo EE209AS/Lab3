@@ -41,7 +41,7 @@ Please follow this link to checkout our video demo of the pianist [EE209AS Team 
 ###Music Instrument:
  Our music instrument is a Piano keyboard running on a Laptop as shown in the figure.(http://virtualpiano.net/).
 
-Setup:
+###Setup:
 1)Download the files by cloning into git repository on both the Intel Edisons. 
 2)Connect the servos to Intel Edisons as shown in the picture. Orange wire to PIN 6, Brown wire to GND, Red wire to 5v. (Make sure you  power the Edison using a powered USB hub or external power source, or else the Edison board will reboot again and again) . 
 3)Place them on keyboard in a desirable position so that the motors hit the keys.
