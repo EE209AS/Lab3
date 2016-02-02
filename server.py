@@ -35,8 +35,9 @@ class PostHandler(BaseHTTPRequestHandler):
 	    pid = output.split()[0]
             print 'killing process', pid
             sp.call(['kill', pid])
+
         elif form['Action'].value == 'Tempo':
-            sp.call(['gcc', filename + "_" + "tempo.c"])
+            sp.call(['./', filename + "_" + "tempo.out"])
         else:
             print 'wrong Action'
         return
