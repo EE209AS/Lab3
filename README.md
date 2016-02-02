@@ -58,5 +58,5 @@ Please follow this link to checkout our video demo of the pianist [EE209AS Team 
 
 
 ## Scope
-We can try to create a robot band planing different instruments.
+We can create a robot band with band members playing different instruments.
 
