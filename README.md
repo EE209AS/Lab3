@@ -1,4 +1,4 @@
-# EE 209AS Lab2 -- simple mechanical pianist
+# EE 209AS Lab2 -- Simple Mechanical Pianist
 
 ## Introduction
 The pianist is controlled by two motors, each further controlled by an Edison board. The rotation angle of motor's blade is determined by the pulse width output from edison's PWM interface.  
@@ -11,7 +11,7 @@ User are able to control the motor to play music on a remote host by logging int
 * Sherman Wong
 
 ## Demo
-
+Please follow this link to checkout our video demo of the pianist [video]()
 
 ## Things Needed
 1. Two Intel Edison boards  
@@ -33,5 +33,5 @@ User are able to control the motor to play music on a remote host by logging int
   
   
 ## Scope
-Please follow this link to checkout our video demo of the pianist [video]()
+
 
