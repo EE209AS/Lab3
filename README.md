@@ -42,17 +42,17 @@ Please follow this link to checkout our video demo of the pianist [EE209AS Team 
  Our music instrument is a Piano keyboard running on a Laptop as shown in the figure.(http://virtualpiano.net/).
 
 ###Setup:
-1)Download the files by cloning into git repository on both the Intel Edisons. 
-2)Connect the servos to Intel Edisons as shown in the picture. Orange wire to PIN 6, Brown wire to GND, Red wire to 5v. (Make sure you  power the Edison using a powered USB hub or external power source, or else the Edison board will reboot again and again) . 
-3)Place them on keyboard in a desirable position so that the motors hit the keys.
-4)Connect the Intel Edison and the User machine from which the control is done to a same Network.
-5)Navigate to the files containing the Source Files On Edison 1 and start HTTPServer and Python server.
- python -m SimpleHTTPServer 8080 
- python server.py 8000
-6)Navigate to the files contaning the Souce Files on Edison 2 and start Python server
- python server.py 8000
-7)Open the webpage by using the address of Edsion 1 on which the Webpage is hosted. Enter the IP address for each Intel Edison board.
-8)Now the user can control the Music using Start and Stop buttons.
+1. Download the files by cloning into git repository on both the Intel Edisons. 
+2. Connect the servos to Intel Edisons as shown in the picture. Orange wire to PIN 6, Brown wire to GND, Red wire to 5v. (Make sure      you  power the Edison using a powered USB hub or external power source, or else the Edison board will reboot again and again) . 
+3. Place them on keyboard in a desirable position so that the motors hit the keys.
+4. Connect the Intel Edison and the User machine from which the control is done to a same Network.
+5. Navigate to the files containing the Source Files On Edison 1 and start HTTPServer and Python server.
+   python -m SimpleHTTPServer 8080 
+   python server.py 8000
+6. Navigate to the files contaning the Souce Files on Edison 2 and start Python server
+   python server.py 8000
+7. Open the webpage by using the address of Edsion 1 on which the Webpage is hosted. Enter the IP address for each Intel Edison board.
+8. Now the user can control the Music using Start and Stop buttons.
 
 
 ## Scope
