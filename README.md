@@ -58,5 +58,6 @@ Please follow this link to checkout our video demo of the pianist [EE209AS Team 
 
 
 ## Scope
-We can create a robot band with band members playing different instruments.
+For future usage, we can create a web-based remote control robot band with each members playing different instruments so that musicians don't need to travel far to attend a concert. 
+
 
