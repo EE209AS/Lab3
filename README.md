@@ -11,7 +11,14 @@ User are able to control the motor to play music on a remote host by logging int
 * Sherman Wong
 
 ## Demo
-Please follow this link to checkout our video demo of the pianist [video](https://www.youtube.com/watch?v=RMPjr53c3U0)
+Please follow this link to checkout our video demo of the pianist [EE209AS Team Green Lab2 Demo video](https://www.youtube.com/watch?v=RMPjr53c3U0)
+
+* WebPage
+![WebPage](https://github.com/EE209AS/Lab2/raw/master/Images/1.jpg)
+* Online Piano
+![Online Piano](https://github.com/EE209AS/Lab2/raw/master/Images/2.png)
+* Edison and Servo
+![Edison and Servo](https://github.com/EE209AS/Lab2/raw/master/Images/3.jpg)
 
 ## Things Needed
 1. Two Intel Edison boards  
