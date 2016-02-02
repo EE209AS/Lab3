@@ -2,7 +2,7 @@
 
 ## Introduction
 The pianist is controlled by two motors, each further controlled by an Edison board. The rotation angle of motor's blade is determined by the pulse width output from edison's PWM interface.  
-User are able to control the motor to play music on a remote host by logging into the webpage on Webpage/Lab2.html via Browser, select the song he wanna play and click "start" button to play; click "stop" to stop playing, and click "tempo" to accelerate the speed of play -- note that the 4th time clicking on this button will set to the initial speed. Currently we only support 2 songs, each music score is pre-installed on the edison board.
+User are able to control the motor to play music on a remote host by logging into the webpage at "Webpage/Lab2.html" via Browser, select the song he wanna play and click "start" button to play; click "stop" to stop playing, and click "tempo" to accelerate the speed of play -- note that the 4th time clicking on this button will set to the initial speed. Currently we only support 2 songs, each music score is pre-installed on the edison board.
 
 ## Team Green
 * Gautham Adireddy 
