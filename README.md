@@ -37,6 +37,9 @@ Please follow this link to checkout our video demo of the pianist [EE209AS Team 
   As long as the network latency is small, we can assure a fair enough level of concurrency of two motors, and thus guaranteee the quality of the music. We also made a video demo of our work and uploaded it on YouTube.
   
   Note: One limitation of the web interface is that the edison and user host should exist under the same subnet, thus without setting up DNS for edison, we need to specify the IP address of each edison each time we log into it -- this feature is illustrated on our webpage, remember to type in 2 edisons' IP address for sucessful redirection. 
+  
+###Music Instrument:
+ Our music instrument is a Piano keyboard running on a Laptop as shown in the figure.(http://virtualpiano.net/).
 
 Setup:
 1)Download the files by cloning into git repository on both the Intel Edisons. 
