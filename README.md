@@ -11,7 +11,7 @@ User are able to control the motor to play music on a remote host by logging int
 * Sherman Wong
 
 ## Demo
-Please follow this link to checkout our video demo of the pianist [video]()
+Please follow this link to checkout our video demo of the pianist [video](https://www.youtube.com/watch?v=RMPjr53c3U0)
 
 ## Things Needed
 1. Two Intel Edison boards  
