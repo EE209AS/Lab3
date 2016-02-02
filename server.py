@@ -47,6 +47,7 @@ class PostHandler(BaseHTTPRequestHandler):
 	def do_POST(self):
 		parsed_path = urlparse.urlparse(self.path)
 		query = parsed_path[4]
+		print 'thisis query: ', query
 		form = urlparse.parse_qs(query)
 		origin = ""
 		for name, value in sorted(self.headers.items()):
@@ -61,7 +62,7 @@ class PostHandler(BaseHTTPRequestHandler):
 		
 		filename = form["Song"][0] + '.out'
 		if form['Action'][0] == 'Start':
-			sp.Popen(['./'+filename])			
+			sp.Popen(['./'+filename, str(w)])			
 			self.wfile.write('sensor activated!')		#send cookie
 			
 		elif form['Action'][0] == 'Stop':
