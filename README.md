@@ -37,8 +37,21 @@ Please follow this link to checkout our video demo of the pianist [EE209AS Team 
   As long as the network latency is small, we can assure a fair enough level of concurrency of two motors, and thus guaranteee the quality of the music. We also made a video demo of our work and uploaded it on YouTube.
   
   Note: One limitation of the web interface is that the edison and user host should exist under the same subnet, thus without setting up DNS for edison, we need to specify the IP address of each edison each time we log into it -- this feature is illustrated on our webpage, remember to type in 2 edisons' IP address for sucessful redirection. 
-  
-  
+
+Setup:
+1)Download the files by cloning into git repository on both the Intel Edisons. 
+2)Connect the servos to Intel Edisons as shown in the picture. Orange wire to PIN 6, Brown wire to GND, Red wire to 5v. (Make sure you  power the Edison using a powered USB hub or external power source, or else the Edison board will reboot again and again) . 
+3)Place them on keyboard in a desirable position so that the motors hit the keys.
+4)Connect the Intel Edison and the User machine from which the control is done to a same Network.
+5)Navigate to the files containing the Source Files On Edison 1 and start HTTPServer and Python server.
+ python -m SimpleHTTPServer 8000 
+ python server.py 8080
+6)Navigate to the files contaning the Souce Files on Edison 2 and start Python server
+ python server.py 8080
+7)Open the webpage by using the address of Edsion 1 on which the Webpage is hosted. Enter the IP address for each Intel Edison board.
+8)Now the user can control the Music using Start and Stop buttons.
+
+
 ## Scope
 
 
