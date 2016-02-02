@@ -44,10 +44,10 @@ Setup:
 3)Place them on keyboard in a desirable position so that the motors hit the keys.
 4)Connect the Intel Edison and the User machine from which the control is done to a same Network.
 5)Navigate to the files containing the Source Files On Edison 1 and start HTTPServer and Python server.
- python -m SimpleHTTPServer 8000 
- python server.py 8080
+ python -m SimpleHTTPServer 8080 
+ python server.py 8000
 6)Navigate to the files contaning the Souce Files on Edison 2 and start Python server
- python server.py 8080
+ python server.py 8000
 7)Open the webpage by using the address of Edsion 1 on which the Webpage is hosted. Enter the IP address for each Intel Edison board.
 8)Now the user can control the Music using Start and Stop buttons.
 
