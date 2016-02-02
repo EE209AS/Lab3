@@ -21,7 +21,7 @@ Please follow this link to checkout our video demo of the pianist [EE209AS Team 
 ![Edison and Servo](https://github.com/EE209AS/Lab2/raw/master/Images/3.jpg)
 
 ## Things Needed
-1. Two Intel Edison boards  
+1. Two Intel Edison boards with breakout kits
 2. Four Micro USB cables  
 3. Two Servo motors
 4. Computer running music software  
