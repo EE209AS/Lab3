@@ -24,8 +24,10 @@ Please follow this link to checkout our video demo of the pianist [EE209AS Team 
 1. Two Intel Edison boards with breakout kits
 2. Four Micro USB cables  
 3. Two Servo motors
-4. Computer running music software  
-5. Stable local area network(LAN)  
+4. Connecting wires
+5. Computer running music software  
+6. Stable local area network(LAN)  
+7. Cardboard Box
 
 
 ## How It Works
@@ -56,5 +58,5 @@ Please follow this link to checkout our video demo of the pianist [EE209AS Team 
 
 
 ## Scope
-
+We can try to create a robot band planing different instruments.
 
