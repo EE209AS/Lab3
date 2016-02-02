@@ -41,7 +41,7 @@ Please follow this link to checkout our video demo of the pianist [EE209AS Team 
   Note: One limitation of the web interface is that the edison and user host should exist under the same subnet, thus without setting up DNS for edison, we need to specify the IP address of each edison each time we log into it -- this feature is illustrated on our webpage, remember to type in 2 edisons' IP address for sucessful redirection. 
   
 ###Music Instrument:
- Our music instrument is a Piano keyboard running on a Laptop as shown in the figure.(http://virtualpiano.net/).
+ Our music instrument is a Piano keyboard running on a Laptop as shown in the figure.[Virtual Piano](http://virtualpiano.net/).
 
 ###Setup:
 1. Download the files by cloning into git repository on both the Intel Edisons. 
