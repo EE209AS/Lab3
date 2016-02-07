@@ -1,8 +1,29 @@
 from BaseHTTPServer import BaseHTTPRequestHandler
 import subprocess as sp
 import cgi
+import urlparse
+import json
 
 class PostHandler(BaseHTTPRequestHandler):
+
+    def do_GET(self):
+        parsed_path = urlparse.urlparse(self.path)
+        origin = ""
+
+        for name, value in sorted(self.headers.items()):
+            print name, value
+            if name == "origin":
+                origin = value
+
+        arr = range(0:40)
+        message = json.dumps(arr)
+        self.send_response(200)
+        self.send_header('Access-Control-Allow-Origin', origin)
+        self.send_header('Access-Control-Allow-Methods', 'GET')
+        self.end_headers()
+        self.wfile.write(message)
+        return
+
 
     def do_POST(self):
         # Parse the form data posted
