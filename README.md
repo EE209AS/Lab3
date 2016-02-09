@@ -2,6 +2,9 @@
 
 ## Introduction
 In this lab, we extend the control of our Simple Mechanical Pianist to the environment input. When the user issues commands on browser, it activate the sensing-acutating system altogether. The two sensors are the Ultrasonic Distance Sensor and a potentiometer, connected to an Edison board respectively.The ultrasonic sensor can measure the distance of the object in front of it. We use this sensor to indicate human-attendance -- if a person is within 2 meters range of the ultrasonic receiver, it will trigger the servo on one Edison(1) to start playing music. The Potentiometer control the tempo of the servo. When user twist the knob to higher level, the servo connected on the other Edison(2) will increase its frequency. Also, the user can view on browser remotely the whole system's real-time distance information gathered by the Ultrasonic Distance Sensor and the potentiometer voltage output. The data are ploted into a graph to show the distance change and the tempo . 
+##Human Robot Interaction :
+In our system, the value of the distance from Ultrasonic range sensor is being updated to the webpage in realtime. We assume that two Edison boards(Music instruments) are apart. When a user passes through the first Edison(Music Instrument), the music is played if the distance Is less than 200cm. This distance data is also streamed to the Webpage. Based on this webpage value, the musician who is controlling the second Edison connected to potentiometer can vary the user may vary the tempo of music using potentiometer The(range 0-1024) is also shown on the website. This acts like a feedback to the musician.
+
 
 
 ## Team Green
