@@ -1,7 +1,7 @@
 # EE 209AS Lab3 -- Human-Robot Interaction Music Controller
 
 ## Introduction
-In this lab, we extend the control of our Simple Mechanical Pianist to the environment input. We add two sensors to our control. One is the Ultrasonic Distance Seneor which can measure the distance of the object in front of it. We use this sensor as a switch. When the human is walking closed to the sensor by 2 meters, this action will trigger the servo to start work and play music. The Potentiometer control the tempo of the servo. When user twist it to higher level, the servo will increase its frequency. Also, the user can control the whole system to start or stop via web page and view the real-time distance information gathered by the Ultrasonic Distance Seneor. The data are ploted into a graph to show the distance change. 
+In this lab, we extend the control of our Simple Mechanical Pianist to the environment input. When the user issues Start and Stop , the control or output of the motor is based on the two sensors connected to our system. The two sensors are the Ultrasonic Distance Sensor and a potentiometer.The ultrasonic sensor can measure the distance of the object in front of it. We use this sensor as a switch. When the human is within 2 meters of the sensor/system, then this action will trigger the servo on one Edison(1) to start work and play music. The Potentiometer control the tempo of the servo. When user twist it to higher level, the servo connected on the other Edison(2) will increase its frequency. Also, the user can view the whole system's real-time distance information gathered by the Ultrasonic Distance Sensor and the potentiometer voltage output. The data are ploted into a graph to show the distance change and the tempo . 
 
 
 ## Team Green
