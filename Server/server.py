@@ -29,11 +29,11 @@ class PostHandler(BaseHTTPRequestHandler):
 			arr.append(line.split())		
 		# for i, val in enumerate(tmp.split('\n')):
 		# 	arr.append(val.split())
-
-		# for name, value in sorted(self.headers.items()):
-		# 	# print name, value
-		# 	if name == "origin":
-		# 		origin = value
+		origin = ""
+		for name, value in sorted(self.headers.items()):
+			# print name, value
+			if name == "origin":
+				origin = value
 		# print arr
 		message = json.dumps(arr)
 		self.send_response(200)
@@ -48,6 +48,7 @@ class PostHandler(BaseHTTPRequestHandler):
 		parsed_path = urlparse.urlparse(self.path)
 		query = parsed_path[4]
 		form = urlparse.parse_qs(query)
+		origin = ""
 		for name, value in sorted(self.headers.items()):
 			# print name, value
 			if name == "origin":
