@@ -1,8 +1,8 @@
-# EE 209AS Lab2 -- Simple Mechanical Pianist
+# EE 209AS Lab3 -- Human-Robot Interaction Music Controller
 
 ## Introduction
-The pianist is controlled by two motors, each further controlled by an Edison board. The rotation angle of motor's blade is determined by the pulse width output from edison's PWM interface.  
-User are able to control the motor to play music on a remote host by logging into the webpage at "Webpage/Lab2.html" via Browser, select the song he wanna play and click "start" button to play; click "stop" to stop playing, and click "tempo" to accelerate the speed of play -- note that the 4th time clicking on this button will set to the initial speed. Currently we only support 2 songs, each music score is pre-installed on the edison board.
+In this lab, we extend the control of our Simple Mechanical Pianist to the environment input. We add two sensors to our control. One is the Ultrasonic Distance Seneor which can measure the distance of the object in front of it. We use this sensor as a switch. When the human is walking closed to the sensor by 2 meters, this action will trigger the servo to start work and play music. The Potentiometer control the tempo of the servo. When user twist it to higher level, the servo will increase its frequency. Also, the user can control the whole system to start or stop via web page and view the real-time distance information gathered by the Ultrasonic Distance Seneor. The data are ploted into a graph to show the distance change. 
+
 
 ## Team Green
 * Gautham Adireddy 
@@ -28,6 +28,8 @@ Please follow this link to checkout our video demo of the pianist [EE209AS Team 
 5. Computer running music software  
 6. Stable local area network(LAN)  
 7. Cardboard Box
+8. Ultrasonic Distance Seneor
+9. Potentiometer
 
 
 ## How It Works
