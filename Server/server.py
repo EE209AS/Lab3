@@ -2,70 +2,88 @@ from BaseHTTPServer import BaseHTTPRequestHandler
 import subprocess as sp
 import cgi
 import urlparse
-import json, sys, os
+import json, sys, os, re
 
-f = os.fdopen(int(sys.argv[1]))
-maxNumBytes = 40
+
+maxNumBytes = 100
+# f = None
+# r = None
+# sample = 10
+r, w = os.pipe()
+f = os.fdopen(r)
 class PostHandler(BaseHTTPRequestHandler):
+	
+	def do_GET(self):       # for cross domain reference
 
-    def do_GET(self):       # for cross domain reference
-        parsed_path = urlparse.urlparse(self.path)
-        origin = ""
+		# parsed_path = urlparse.urlparse(self.path)
+		# query = parsed_path[4]
+		# if not query:
+		# 	return 
+		# r = int(query[query.find('id=') + 3:])
+		arr = []
+		n = 3
+		for i in range(0,n):
+			line = f.readline()
+			if not line:
+				break
+			arr.append(line.split())		
+		# for i, val in enumerate(tmp.split('\n')):
+		# 	arr.append(val.split())
 
-        for name, value in sorted(self.headers.items()):
-            print name, value
-            if name == "origin":
-                origin = value
-        # #dummy data
-        # arr = range(0:40)
-        message = f.read(maxNumBytes)
-        #request sending
-        #message = json.dumps(arr)
-        self.send_response(200)
-        self.send_header('Access-Control-Allow-Origin', origin)         #browser required
-        self.send_header('Access-Control-Allow-Methods', 'GET')         #browser required
-        self.end_headers()
-        self.wfile.write(message)
-        return
+		# for name, value in sorted(self.headers.items()):
+		# 	# print name, value
+		# 	if name == "origin":
+		# 		origin = value
+		# print arr
+		message = json.dumps(arr)
+		self.send_response(200)
+		self.send_header('Access-Control-Allow-Origin', origin)         #browser required
+		self.send_header('Access-Control-Allow-Methods', 'GET')         #browser required
+		self.end_headers()
+		self.wfile.write(message)
+		return
 
 
-    def do_POST(self):
-        # Parse the form data posted
-        form = cgi.FieldStorage(
-            fp=self.rfile,
-            headers=self.headers,
-            environ={'REQUEST_METHOD':'POST',
-                     'CONTENT_TYPE':self.headers['Content-Type'],
-                     })
+	def do_POST(self):
+		parsed_path = urlparse.urlparse(self.path)
+		query = parsed_path[4]
+		form = urlparse.parse_qs(query)
+		for name, value in sorted(self.headers.items()):
+			# print name, value
+			if name == "origin":
+				origin = value
+		# Begin the response
+		self.send_response(200)
+		self.send_header('Access-Control-Allow-Origin', origin)         #browser required
+		self.send_header('Access-Control-Allow-Methods', 'GET')         #browser required
+		self.end_headers()
+		
+		filename = form["Song"][0] + '.out'
+		if form['Action'][0] == 'Start':
+			# sp.Popen(['./'+filename])			
+			sp.Popen(['./test.o', str(w)])
+			self.wfile.write('sensor activated!')		#send cookie
+			
+		elif form['Action'][0] == 'Stop':
+			filename2 = form["Song"][0] + '\.out'
+			#dummy test
+			filename2 = 'test.o'
+			if r is not None:
+				os.close(r)
+			p1 = sp.Popen(['ps'], stdout=sp.PIPE)
+			p2 = sp.Popen(['grep', filename2],stdin=p1.stdout, stdout=sp.PIPE)
+			output = p2.communicate()[0]
+			pid = output.split()[0]
+			print 'killing process', pid
+			sp.call(['kill', pid])
 
-        # Begin the response
-        self.send_response(200)
-        self.end_headers()
-        self.wfile.write('Client: %s\n' % str(self.client_address))
-        self.wfile.write('User-agent: %s\n' % str(self.headers['user-agent']))
-        self.wfile.write('Path: %s\n' % self.path)
-        self.wfile.write('Form data:\n')
-        
 
-        filename = form["Song"].value + '.out'
-        if form['Action'].value == 'Start':
-            sp.Popen(['./'+filename])
+		elif form['Action'][0] == 'Tempo':
+			sp.call(['./', filename + "_" + "tempo.out"])
+		else:
+			print 'wrong Action'
 
-        elif form['Action'].value == 'Stop':
-	    filename2 = form["Song"].value + '\.out'
-	    print 'filename: ', filename2
-            p1 = sp.Popen(['ps'], stdout=sp.PIPE)
-	    p2 = sp.Popen(['grep', filename2],stdin=p1.stdout, stdout=sp.PIPE)
-      	    output = p2.communicate()[0]
-	    pid = output.split()[0]
-            print 'killing process', pid
-            sp.call(['kill', pid])
-
-        elif form['Action'].value == 'Tempo':
-            sp.call(['./', filename + "_" + "tempo.out"])
-        else:
-            print 'wrong Action'
-        return
+		return
 
 from BaseHTTPServer import HTTPServer
 server = HTTPServer(('0.0.0.0', 8000), PostHandler)
