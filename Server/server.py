@@ -15,7 +15,7 @@ class PostHandler(BaseHTTPRequestHandler):
             if name == "origin":
                 origin = value
 
-        arr = range(0:40)
+        arr = range(0,40)
         message = json.dumps(arr)
         self.send_response(200)
         self.send_header('Access-Control-Allow-Origin', origin)
@@ -41,7 +41,7 @@ class PostHandler(BaseHTTPRequestHandler):
         self.wfile.write('User-agent: %s\n' % str(self.headers['user-agent']))
         self.wfile.write('Path: %s\n' % self.path)
         self.wfile.write('Form data:\n')
-        
+
 
         filename = form["Song"].value + '.out'
         if form['Action'].value == 'Start':
