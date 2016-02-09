@@ -76,7 +76,7 @@ Note: One limitation between this approach is that the pipe is established betwe
 8. Press the start button.
 9. The  data from the sensors is streamed to the webpage in the realtime. The servo motor is controlled based on the sensors output.
 
-
+note: on edison with ultrasonic please rename pot2.out as pot.out
 ## Scope
 For future usage, we can create a web-based remote control robot band with each members playing different instruments so that musicians don't need to travel far to attend a concert. Also this system can be use as the door bell. When anyone walk close to the door which installed with the Ultrasonic Sensor, the music will begin to notify the host.
 
