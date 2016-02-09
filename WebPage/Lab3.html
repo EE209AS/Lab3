@@ -58,26 +58,44 @@
 					{
 							song="Song2";
 					}
-					var httpStr="http://";
-					$.post(
-							httpStr.concat(document.getElementById('ip1').value),
-							{ Action: browser, Song: song },
-							function(data) {
-									//alert("Response: " + data);
-								}
-							);
-					$.post(
-							httpStr.concat(document.getElementById('ip2').value),
-							{ Action: browser, Song: song },
-							function(data) {
-									//alert("Response: " + data);
-								}
-							);
+					// var httpStr="http://";
+					// $.post(
+					// 		httpStr.concat(document.getElementById('ip1').value),
+					// 		{ Action: browser, Song: song },
+					// 		function(data) {
+					// 				//alert("Response: " + data);
+					// 			}
+					// 		);
+					// $.post(
+					// 		httpStr.concat(document.getElementById('ip2').value),
+					// 		{ Action: browser, Song: song },
+					// 		function(data) {
+					// 				//alert("Response: " + data);
+					// 			}
+					// 		);
+					var xhttp = new XMLHttpRequest();
+					xhttp.onreadystatechange = function() {
+									if (xhttp.readyState == 4 && xhttp.status == 200) {
+													// id = parseInt(xhttp.responseText);
+													console.log('id is ' + id);
+									}
+					}
+					xhttp.open("POST", 'http://'+ document.getElementById('ip1').value + '/?Action=' + browser + '&Song=' + song, true);
+					xhttp.send();
+
+					var xhttp = new XMLHttpRequest();
+					xhttp.onreadystatechange = function() {
+									if (xhttp.readyState == 4 && xhttp.status == 200) {
+													// id = parseInt(xhttp.responseText);
+													console.log('id is ' + id);
+									}
+					}
+					xhttp.open("POST", 'http://'+ document.getElementById('ip2').value + '/?Action=' + browser + '&Song=' + song, true);
+					xhttp.send();
 
 							if(browser==="Start"){
 								startClick=true;
 								stopClick=false;
-								document.getElementById('tempo').innerHTML="15";
 							}
 							if(browser==="Stop"){
 								startClick=false;
@@ -90,10 +108,10 @@
             if(can.getContext){
               var cans = can.getContext('2d');
               cans.beginPath();
-              cans.moveTo(115.5,400.5);
-              // cans.lineTo(808.5,33);
-              // cans.lineTo(115.5,400.5);
-              // cans.lineTo(808.5,400.5);
+              cans.moveTo(116,327);
+              // cans.lineTo(116,26);
+              // cans.lineTo(813,26);
+              // cans.lineTo(813,327);
               cans.lineWidth=1;
               cans.strokeStyle = 'red';
               cans.stroke();
@@ -101,8 +119,6 @@
 
 						var StartX;
 						var StartY;
-            var count=0;
-						console.log("run pageload");
 
             function updateCanvas(){
 								// request for data
@@ -112,16 +128,13 @@
 											if (xhttp.readyState == 4 && xhttp.status == 200) {
 													var arr = JSON.parse(xhttp.responseText);
 													if(arr!=null){
-														count=count+1;
-														if(count===1){
-															StartX=115.5;
-															StartY=400.5;
-														}
+
+														document.getElementById('distance').innerHTML=parseFloat(arr[arr.length-1][0]);
 														// draw new data
 														var i;
 														for(i=0;i<arr.length;i++){
-															StartX=StartX+1.73;
-															StartY=StartY-arr[i]/40;
+															StartX=116+parseFloat(arr[i][1])*15.5;
+															StartY=327-parseFloat(arr[i][0])*0.6;
 															cans.lineTo(StartX,StartY);
 															cans.stroke();
 														}
@@ -132,7 +145,7 @@
 									xhttp.send();
 								}
             }
-            setInterval(updateCanvas, 2000);
+            setInterval(updateCanvas, 1000);
         }
     </script>
 	</head>
@@ -170,7 +183,7 @@
 
 			<section class="container" id="Main">
 				<h5 class="title">Lab 3</h5>
-        <p>HRI Music Controller</p>
+        <p>Human-Robot Interaction Music Controller</p>
 				<p>
 					<ul>
 						<h5 class="title">Enter the IP Address First</h5>
@@ -211,8 +224,8 @@
 
 						<ol>
 							<li>
-								<font size="4">Distance Control from XXX Seneor</font>
-								<canvas id="can" width="893px" height="450px">4</canvas>
+								<font size="4">Distance Control from Ultrasonic Distance Seneor</font>
+								<canvas id="can" width="900px" height="366px">4</canvas>
 							</li>
 
 							<hr>
@@ -221,7 +234,7 @@
 								<font size="4">Tempo control from Potentialmeter</font>
 								<p></p>
 								<center>
-									<font size="4">The Current Tempo is: </font><font size="5" id="tempo">0</font>
+									<font size="4">The Current Distance is: </font><font size="5" id="distance">0</font>
 								</center>
 							</li>
 						</ol>
