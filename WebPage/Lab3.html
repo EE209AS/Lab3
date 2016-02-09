@@ -45,18 +45,18 @@
 
 		<script>
 
-		var startClick=false;
-		var stopClick=false;
+		var start=false;
+		
 		var id;
 		function btnClick(browser) {
 					var song;
 					if(document.getElementById('song1').checked===true)
 					{
-							song="pot";
+							song="Pot";
 					}
 					else if(document.getElementById('song2').checked===true)
 					{
-							song="Song2";
+							song="Pot";
 					}
 
 					var xhttp = new XMLHttpRequest();
@@ -71,24 +71,21 @@
 					xhttp.send();
 
 
-					var xhttp = new XMLHttpRequest();
-					xhttp.onreadystatechange = function() {
-									if (xhttp.readyState == 4 && xhttp.status == 200) {
+					var xhttp2 = new XMLHttpRequest();
+					xhttp2.onreadystatechange = function() {
+									if (this.readyState == 4 && this.status == 200) {
 													// id = parseInt(xhttp.responseText);
 													console.log('id is ' + id);
 									}
 					}
-					xhttp.open("POST", 'http://'+ document.getElementById('ip2').value + '/?Action=' + browser + '&Song=' + song, true);
-					xhttp.send();
+					xhttp2.open("POST", 'http://'+ document.getElementById('ip2').value + '/?Action=' + browser + '&Song=' + song, true);
+					xhttp2.send();
 
-							if(browser==="Start"){
-								startClick=true;
-								stopClick=false;
-							}
-							if(browser==="Stop"){
-								startClick=false;
-								stopClick=true;
-							}
+					if(browser=="Start")
+						start=true;
+					if(browser=="Stop")
+						start=false;
+					
 				}
 
         function pageLoad(){
@@ -105,34 +102,55 @@
               cans.stroke();
             }
 
-						var StartX;
-						var StartY;
-
+			var StartX;
+			var StartY;
+			var count = 0;
             function updateCanvas(){
 								// request for data
-								if(startClick===true){
+								if(start==true){
 									var xhttp = new XMLHttpRequest();
 									xhttp.onreadystatechange = function() {
 											if (xhttp.readyState == 4 && xhttp.status == 200) {
 
 													var arr = JSON.parse(xhttp.responseText);
+													console.log(arr)
 													if(arr!=null){
 
 														document.getElementById('distance').innerHTML=parseFloat(arr[arr.length-1][0]);
 														// draw new data
 														var i;
 														for(i=0;i<arr.length;i++){
-															StartX=116+parseFloat(arr[i][1])*15.5;
-															StartY=327-parseFloat(arr[i][0])*0.6;
-															cans.lineTo(StartX,StartY);
-															cans.stroke();
+															 if (parseFloat(arr[i][0]) < 400) {
+																if (StartX > 813) {
+																	cans.clearRect(0,0,canvas.width, canvas.height);
+																	count++;
+																}
+																StartX=116+parseFloat(arr[i][1])*15.5 - count * 697;
+																StartY=327-parseFloat(arr[i][0])*0.6;
+																cans.lineTo(StartX,StartY);
+																cans.stroke();
+															 }
 														}
 													}
 											}
 									};
 
-									xhttp.open("GET", "http://localhost:8000/", true);
+									xhttp.open("GET", 'http://'+ document.getElementById('ip1').value + '/ajax', true);
 									xhttp.send();
+
+									var xhttp2 = new XMLHttpRequest();
+									xhttp2.onreadystatechange = function() {
+											if (xhttp2.readyState == 4 && xhttp2.status == 200) {
+
+													var arr = JSON.parse(xhttp2.responseText);
+													document.getElementById('time').innerHTML=parseFloat(arr[arr.length-1][1]);
+													document.getElementById('voltage').innerHTML=parseFloat(arr[arr.length-1][0]);
+													
+											}
+									};
+
+									xhttp2.open("GET", 'http://'+ document.getElementById('ip2').value + '/ajax', true);
+									xhttp2.send();
 								}
             }
             setInterval(updateCanvas, 1000);
@@ -221,10 +239,17 @@
 							<hr>
 
 							<li>
-								<font size="4">Tempo control from Potentialmeter</font>
+								<font size="4">Distance monitoring</font>
 								<p></p>
 								<center>
 									<font size="4">The Current Distance is: </font><font size="5" id="distance">0</font>
+								</center>
+							</li>
+							<li>
+								<font size="4">Tempo control from Potentialmeter</font>
+								<p></p>
+								<center>
+									Time: <font size="4" id="time"></font>   &nbsp &nbsp &nbsp Voltage:  <font size="5" id="voltage"></font>
 								</center>
 							</li>
 						</ol>
