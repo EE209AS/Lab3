@@ -29,7 +29,7 @@ class PostHandler(BaseHTTPRequestHandler):
 			arr.append(line.split())		
 		# for i, val in enumerate(tmp.split('\n')):
 		# 	arr.append(val.split())
-		origin = ""
+		origin = "null"
 		for name, value in sorted(self.headers.items()):
 			# print name, value
 			if name == "origin":
@@ -49,7 +49,7 @@ class PostHandler(BaseHTTPRequestHandler):
 		query = parsed_path[4]
 		print 'thisis query: ', query
 		form = urlparse.parse_qs(query)
-		origin = ""
+		origin = 'null'
 		for name, value in sorted(self.headers.items()):
 			# print name, value
 			if name == "origin":
