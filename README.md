@@ -23,8 +23,9 @@ Please follow this link to checkout our video demo of the pianist [EE209AS Lab3 
 ![Webpage](https://github.com/EE209AS/Lab3/raw/master/monitor2.png)
 * Online Piano
 ![Online Piano](https://github.com/EE209AS/Lab2/raw/master/Images/2.png)
-* Edison and Servo
-![Edison and Servo](https://github.com/EE209AS/Lab2/raw/master/Images/3.jpg)
+* Edison and Sensor systems
+![Edison and Servo](https://github.com/EE209AS/Lab3/raw/master/ultrasonic.PNG)
+![Edison and Servo](https://github.com/EE209AS/Lab3/raw/master/Potetnioemter.PNG)
 
 ## Things Needed
 1. Two Intel Edison boards with breakout kits
