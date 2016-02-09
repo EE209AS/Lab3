@@ -18,6 +18,9 @@ Please follow this link to checkout our video demo of the pianist [EE209AS Lab3 
 
 * WebPage
 ![WebPage](https://github.com/EE209AS/Lab2/raw/master/Images/1.jpg)
+* Real-time streaming
+![Webpage](https://github.com/EE209AS/Lab3/raw/master/monitor.png)
+![Webpage](https://github.com/EE209AS/Lab3/raw/master/monitor2.png)
 * Online Piano
 ![Online Piano](https://github.com/EE209AS/Lab2/raw/master/Images/2.png)
 * Edison and Servo
