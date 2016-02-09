@@ -1,7 +1,7 @@
 # EE 209AS Lab3 -- Human-Robot Interaction Music Controller
 
 ## Introduction
-In this lab, we extend the control of our Simple Mechanical Pianist to the environment input. When the user issues Start and Stop , the control or output of the motor is based on the two sensors connected to our system. The two sensors are the Ultrasonic Distance Sensor and a potentiometer.The ultrasonic sensor can measure the distance of the object in front of it. We use this sensor as a switch. When the human is within 2 meters of the sensor/system, then this action will trigger the servo on one Edison(1) to start work and play music. The Potentiometer control the tempo of the servo. When user twist it to higher level, the servo connected on the other Edison(2) will increase its frequency. Also, the user can view the whole system's real-time distance information gathered by the Ultrasonic Distance Sensor and the potentiometer voltage output. The data are ploted into a graph to show the distance change and the tempo . 
+In this lab, we extend the control of our Simple Mechanical Pianist to the environment input. When the user issues Start and Stop , the control or output of the motor is based on the two sensors connected to our system. The two sensors are the Ultrasonic Distance Sensor and a potentiometer which are connected to the different Edison boards.The ultrasonic sensor can measure the distance of the object in front of it. We use this sensor as a switch. When the human is within 2 meters of the sensor/system, then this action will trigger the servo on one Edison(1) to start work and play music. The Potentiometer control the tempo of the servo. When user twist it to higher level, the servo connected on the other Edison(2) will increase its frequency. Also, the user can view the whole system's real-time distance information gathered by the Ultrasonic Distance Sensor and the potentiometer voltage output. The data are ploted into a graph to show the distance change and the tempo . 
 
 
 ## Team Green
@@ -11,7 +11,7 @@ In this lab, we extend the control of our Simple Mechanical Pianist to the envir
 * Sherman Wong
 
 ## Demo
-Please follow this link to checkout our video demo of the pianist [EE209AS Team Green Lab2 Demo video](https://www.youtube.com/watch?v=RMPjr53c3U0)
+Please follow this link to checkout our video demo of the pianist [EE209AS Lab3 Human Robot Interaction Music Controller Demo Video](https://www.youtube.com/watch?v=u1IBEz-Xya8)
 
 * WebPage
 ![WebPage](https://github.com/EE209AS/Lab2/raw/master/Images/1.jpg)
@@ -41,7 +41,10 @@ Please follow this link to checkout our video demo of the pianist [EE209AS Team 
 Potentiometer is a resistor with a sliding contact that forms a voltage divider. As we rotate the knob, the contact point and hence the output voltage changes.
 
 ### Ultrasonic Sensor:
+Ultrasonic sensor is a range sensor which is used to detect distance. This works on the principle of echo. We send out a trigger pulse for a duaration of time and then sample the received signal. The duration for which the received singal is HIGH gives is proportional to the distance from the object.
   
+### Web Page
+The web page for this lab is based on the previous lab web page and we add a graph to show the data collect from the Ultrasonic Distance Measure Sensor and the output voltage of the Potentiometer. The graph is drawed on the HTML Canvas which backgroung image has been set as a Coordinate System. We map our data to that coordinate and show user the almost real-time distance change of the Ultrasonic Distance Sensor measurement. The web page actually send data request to the server every 1 second and draw the received data. The web page can filter out the wrong data collected by the sensor and only draw the correct data. It also can auto refresh when the plot reach the end of the graph. The voltage of the Potentiometer is directly show under the graph.
   
 ### System Communication Setup
   Since we are controlling two motors & edisons tapping simultaneously, we implemented a "double server" approach to achieve double command. Each time we issue and command on Lab2.html webpage, it will issue two http request (POST or GET) to each edison board. Our goal is to serve a beautiful frontend webpage while providing a dynamic, executing linux CLI commands web interface. Additionally, we don't want to introduce much system overhead on the edison board and reduce computation complexity. So eventually we go for a simple TCP level server, instead of installing web frameworks like Apache or Express or Django sort of. To ensure development efficiency, we programmed two servers, one running on port 8080, serving static html and css/js contents, while the other running on port 8000, accepting post request which execute CLI commands on edison's linux -- the latter one ("Server/server.py") is of great essence to our work, feel free to check it out. Basically it try to execute the C programm song.out on edison and terminate it by grabbing the PID of the subprocess and kill it directly.  
@@ -67,6 +70,6 @@ Potentiometer is a resistor with a sliding contact that forms a voltage divider.
 
 
 ## Scope
-For future usage, we can create a web-based remote control robot band with each members playing different instruments so that musicians don't need to travel far to attend a concert. 
+For future usage, we can create a web-based remote control robot band with each members playing different instruments so that musicians don't need to travel far to attend a concert. Also this system can be use as the door bell. When anyone walk close to the door which installed with the Ultrasonic Sensor, the music will begin to notify the host.
 
 
