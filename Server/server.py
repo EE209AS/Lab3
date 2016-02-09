@@ -60,14 +60,11 @@ class PostHandler(BaseHTTPRequestHandler):
 		
 		filename = form["Song"][0] + '.out'
 		if form['Action'][0] == 'Start':
-			# sp.Popen(['./'+filename])			
-			sp.Popen(['./test.o', str(w)])
+			sp.Popen(['./'+filename])			
 			self.wfile.write('sensor activated!')		#send cookie
 			
 		elif form['Action'][0] == 'Stop':
 			filename2 = form["Song"][0] + '\.out'
-			#dummy test
-			filename2 = 'test.o'
 			if r is not None:
 				os.close(r)
 			p1 = sp.Popen(['ps'], stdout=sp.PIPE)

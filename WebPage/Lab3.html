@@ -52,7 +52,7 @@
 					var song;
 					if(document.getElementById('song1').checked===true)
 					{
-							song="Song1";
+							song="pot";
 					}
 					else if(document.getElementById('song2').checked===true)
 					{
@@ -125,23 +125,23 @@
 									var xhttp = new XMLHttpRequest();
 									xhttp.onreadystatechange = function() {
 											if (xhttp.readyState == 4 && xhttp.status == 200) {
-													console.log(xhttp.responseText);
-													// var arr = JSON.parse(xhttp.responseText);
-													// if(arr!=null){
-													// 	count=count+1;
-													// 	if(count===1){
-													// 		StartX=115.5;
-													// 		StartY=400.5;
-													// 	}
-													// 	// draw new data
-													// 	var i;
-													// 	for(i=0;i<arr.length;i++){
-													// 		StartX=StartX+1.73;
-													// 		StartY=StartY-arr[i]/40;
-													// 		cans.lineTo(StartX,StartY);
-													// 		cans.stroke();
-													// 	}
-													// }
+													
+													var arr = JSON.parse(xhttp.responseText);
+													if(arr!=null){
+														count=count+1;
+														if(count===1){
+															StartX=115.5;
+															StartY=400.5;
+														}
+														// draw new data
+														var i;
+														for(i=0;i<arr.length;i++){
+															StartX=StartX+1.73;
+															StartY=StartY-arr[i]/40;
+															cans.lineTo(StartX,StartY);
+															cans.stroke();
+														}
+													}
 											}
 									};
 								
