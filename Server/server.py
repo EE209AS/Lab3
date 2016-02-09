@@ -2,11 +2,13 @@ from BaseHTTPServer import BaseHTTPRequestHandler
 import subprocess as sp
 import cgi
 import urlparse
-import json
+import json, sys, os
 
+f = os.fdopen(int(sys.argv[1]))
+maxNumBytes = 40
 class PostHandler(BaseHTTPRequestHandler):
 
-    def do_GET(self):
+    def do_GET(self):       # for cross domain reference
         parsed_path = urlparse.urlparse(self.path)
         origin = ""
 
@@ -14,12 +16,14 @@ class PostHandler(BaseHTTPRequestHandler):
             print name, value
             if name == "origin":
                 origin = value
-
-        arr = range(0:40)
-        message = json.dumps(arr)
+        # #dummy data
+        # arr = range(0:40)
+        message = f.read(maxNumBytes)
+        #request sending
+        #message = json.dumps(arr)
         self.send_response(200)
-        self.send_header('Access-Control-Allow-Origin', origin)
-        self.send_header('Access-Control-Allow-Methods', 'GET')
+        self.send_header('Access-Control-Allow-Origin', origin)         #browser required
+        self.send_header('Access-Control-Allow-Methods', 'GET')         #browser required
         self.end_headers()
         self.wfile.write(message)
         return
