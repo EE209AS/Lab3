@@ -1,0 +1,83 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<unistd.h>
+#include<mraa/pwm.h>
+#include<mraa/gpio.h>
+#include<time.h>
+#include<string.h>
+void function1(mraa_pwm_context pwm)
+{
+mraa_pwm_write(pwm,0.05f);
+usleep(300000);
+mraa_pwm_write(pwm,0.1f);
+usleep(300000);
+return ;
+}
+void function2(mraa_pwm_context pwm)
+{
+mraa_pwm_write(pwm,0.05f);
+usleep(300000);
+mraa_pwm_write(pwm,0.1f);
+usleep(100000);
+return ;
+int main(int argc, char* argv[])
+{
+float distance;
+char *ptr=argv[1];
+int fd=atoi(ptr);
+float timedif,current;
+int i=0;
+clock_t t1,t2,t3;
+time_t start,stop;
+time(&start);
+char* c_time_string;
+mraa_gpio_context trig;
+mraa_gpio_context echo;
+trig=mraa_gpio_init(3);
+mraa_gpio_dir(trig, MRAA_GPIO_OUT);
+echo=mraa_gpio_init(9);
+mraa_gpio_dir(echo, MRAA_GPIO_IN);
+mraa_pwm_context pwm;
+pwm= mraa_pwm_init(6);
+if(pwm==NULL)
+{
+fprintf(stderr,"failed");
+return 1;
+}
+mraa_pwm_period_ms(pwm,20);
+mraa_pwm_enable(pwm, 1);
+current=time(NULL);
+while(1){
+char* buf = (char*)calloc(100,sizeof(char));
+mraa_gpio_write(trig,0);
+usleep(2);
+mraa_gpio_write(trig,1);
+usleep(10);
+mraa_gpio_write(trig,0);
+while((mraa_gpio_read(echo))==0)
+{
+}
+t1=clock();
+while((mraa_gpio_read(echo))==1)
+{}
+t2=clock();
+time(&stop);
+timedif=((float)t2-(float)t1)/CLOCKS_PER_SEC;
+distance=timedif*(17000);
+if(distance<100.0000)
+{
+function1(pwm);
+usleep(300000);
+function2(pwm);
+}
+else
+{
+}
+sprintf(buf, "%f\t%f\n",distance,difftime(stop,start));
+int nbytes=strlen(buf);
+  write(fd, buf, nbytes);
+        free(buf);
+sleep(1);
+}
+return 0;
+}
