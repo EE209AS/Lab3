@@ -11,7 +11,7 @@ In this lab, we extend the control of our Simple Mechanical Pianist to the envir
 * Sherman Wong
 
 ## Demo
-Please follow this link to checkout our video demo of the pianist [EE209AS Team Green Lab2 Demo video](https://www.youtube.com/watch?v=RMPjr53c3U0)
+Please follow this link to checkout our video demo of the pianist [EE209AS Lab3 Human Robot Interaction Music Controller Demo Video](https://www.youtube.com/watch?v=u1IBEz-Xya8)
 
 * WebPage
 ![WebPage](https://github.com/EE209AS/Lab2/raw/master/Images/1.jpg)
@@ -42,6 +42,8 @@ Potentiometer is a resistor with a sliding contact that forms a voltage divider.
 
 ### Ultrasonic Sensor:
   
+### Web Page
+The web page for this lab is based on the previous lab web page and we add a graph to show the data collect from the Ultrasonic Distance Measure Sensor and the output voltage of the Potentiometer. The graph is drawed on the HTML Canvas which backgroung image has been set as a Coordinate System. We map our data to that coordinate and show user the almost real-time distance change of the Ultrasonic Distance Sensor measurement. The web page actually send data request to the server every 1 second and draw the received data. The web page can filter out the wrong data collected by the sensor and only draw the correct data. It also can auto refresh when the plot reach the end of the graph. The voltage of the Potentiometer is directly show under the graph.
   
 ### System Communication Setup
   Since we are controlling two motors & edisons tapping simultaneously, we implemented a "double server" approach to achieve double command. Each time we issue and command on Lab2.html webpage, it will issue two http request (POST or GET) to each edison board. Our goal is to serve a beautiful frontend webpage while providing a dynamic, executing linux CLI commands web interface. Additionally, we don't want to introduce much system overhead on the edison board and reduce computation complexity. So eventually we go for a simple TCP level server, instead of installing web frameworks like Apache or Express or Django sort of. To ensure development efficiency, we programmed two servers, one running on port 8080, serving static html and css/js contents, while the other running on port 8000, accepting post request which execute CLI commands on edison's linux -- the latter one ("Server/server.py") is of great essence to our work, feel free to check it out. Basically it try to execute the C programm song.out on edison and terminate it by grabbing the PID of the subprocess and kill it directly.  
