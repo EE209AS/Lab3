@@ -69,6 +69,6 @@ The web page for this lab is based on the previous lab web page and we add a gra
 
 
 ## Scope
-For future usage, we can create a web-based remote control robot band with each members playing different instruments so that musicians don't need to travel far to attend a concert. 
+For future usage, we can create a web-based remote control robot band with each members playing different instruments so that musicians don't need to travel far to attend a concert. Also this system can be use as the door bell. When anyone walk close to the door which installed with the Ultrasonic Sensor, the music will begin to notify the host.
 
 
