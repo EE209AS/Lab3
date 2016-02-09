@@ -47,42 +47,30 @@
 
 		var startClick=false;
 		var stopClick=false;
-
+		var id;
 		function btnClick(browser) {
 					var song;
 					if(document.getElementById('song1').checked===true)
 					{
-							song="Song1";
+							song="pot";
 					}
 					else if(document.getElementById('song2').checked===true)
 					{
 							song="Song2";
 					}
-					// var httpStr="http://";
-					// $.post(
-					// 		httpStr.concat(document.getElementById('ip1').value),
-					// 		{ Action: browser, Song: song },
-					// 		function(data) {
-					// 				//alert("Response: " + data);
-					// 			}
-					// 		);
-					// $.post(
-					// 		httpStr.concat(document.getElementById('ip2').value),
-					// 		{ Action: browser, Song: song },
-					// 		function(data) {
-					// 				//alert("Response: " + data);
-					// 			}
-					// 		);
+
 					var xhttp = new XMLHttpRequest();
 					xhttp.onreadystatechange = function() {
 									if (xhttp.readyState == 4 && xhttp.status == 200) {
 													// id = parseInt(xhttp.responseText);
 													console.log('id is ' + id);
 									}
+
 					}
 					xhttp.open("POST", 'http://'+ document.getElementById('ip1').value + '/?Action=' + browser + '&Song=' + song, true);
 					xhttp.send();
 
+<<<<<<< HEAD
 					var xhttp = new XMLHttpRequest();
 					xhttp.onreadystatechange = function() {
 									if (xhttp.readyState == 4 && xhttp.status == 200) {
@@ -117,6 +105,7 @@
               cans.stroke();
             }
 
+<<<<<<< HEAD
 						var StartX;
 						var StartY;
 
@@ -126,6 +115,7 @@
 									var xhttp = new XMLHttpRequest();
 									xhttp.onreadystatechange = function() {
 											if (xhttp.readyState == 4 && xhttp.status == 200) {
+
 													var arr = JSON.parse(xhttp.responseText);
 													if(arr!=null){
 
@@ -141,7 +131,8 @@
 													}
 											}
 									};
-									xhttp.open("GET", "http://localhost:8000/ajax" , true);
+
+									xhttp.open("GET", "http://localhost:8000/", true);
 									xhttp.send();
 								}
             }
