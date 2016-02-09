@@ -41,6 +41,7 @@ Please follow this link to checkout our video demo of the pianist [EE209AS Lab3 
 Potentiometer is a resistor with a sliding contact that forms a voltage divider. As we rotate the knob, the contact point and hence the output voltage changes.
 
 ### Ultrasonic Sensor:
+Ultrasonic sensor is a range sensor which is used to detect distance. This works on the principle of echo. We send out a trigger pulse for a duaration of time and then sample the received signal. The duration for which the received singal is HIGH gives is proportional to the distance from the object.
   
 ### Web Page
 The web page for this lab is based on the previous lab web page and we add a graph to show the data collect from the Ultrasonic Distance Measure Sensor and the output voltage of the Potentiometer. The graph is drawed on the HTML Canvas which backgroung image has been set as a Coordinate System. We map our data to that coordinate and show user the almost real-time distance change of the Ultrasonic Distance Sensor measurement. The web page actually send data request to the server every 1 second and draw the received data. The web page can filter out the wrong data collected by the sensor and only draw the correct data. It also can auto refresh when the plot reach the end of the graph. The voltage of the Potentiometer is directly show under the graph.
